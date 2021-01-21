@@ -1,18 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_horoscope_guide/horoscope_list.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 import 'models/horoscope.dart';
 
-class HoroscopeDetail extends StatelessWidget {
+class HoroscopeDetail extends StatefulWidget {
   int index;
 
   HoroscopeDetail(this.index);
 
+  @override
+  HoroscopeDetailState createState() => HoroscopeDetailState();
+}
+
+class HoroscopeDetailState extends State<HoroscopeDetail> {
   Horoscope chosenHoroscope;
+  Color dominantColor = Colors.purple.shade200;
+  PaletteGenerator paletteGenerator;
+
+  void initState() {
+    super.initState();
+    chosenHoroscope = HoroscopeList().allHoroscope[widget.index];
+    findDominantColor();
+  }
+
+  void findDominantColor() {
+    Future<PaletteGenerator> fPaletteGenerator =
+        PaletteGenerator.fromImageProvider(
+            AssetImage("images/" + chosenHoroscope.horoscopeBigImage));
+    fPaletteGenerator.then((value) {
+      paletteGenerator = value;
+      debugPrint(
+          "secilen renk " + paletteGenerator.dominantColor.color.toString());
+    });
+    setState(() {
+      //dominantColor = paletteGenerator.dominantColor.color;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    chosenHoroscope = HoroscopeList().allHoroscope[index];
     return Scaffold(
       primary: false,
       body: CustomScrollView(
@@ -36,13 +63,18 @@ class HoroscopeDetail extends StatelessWidget {
             pinned: true,
             primary: true,
             snap: false,
-            backgroundColor: Colors.purple[200],
+            backgroundColor:
+                dominantColor != null ? dominantColor : Colors.purple[200],
           ),
           SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Text(
-                chosenHoroscope.horoscopeDetail,
-                style: TextStyle(fontSize: 18, color: Colors.black),
+            child: Container(
+              margin: EdgeInsets.all(8),
+              //color: Colors.black38,
+              child: SingleChildScrollView(
+                child: Text(
+                  chosenHoroscope.horoscopeDetail,
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                ),
               ),
             ),
           ),
