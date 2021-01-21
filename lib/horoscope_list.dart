@@ -45,29 +45,38 @@ class HoroscopeList extends StatelessWidget {
 
   Widget ARowHoroscope(BuildContext context, int index) {
     Horoscope addListNow = allHoroscope[index];
-    return Card(
-      elevation: 4,
-      child: ListTile(
-        leading: Image.asset(
-          "images/" + addListNow.horoscopeLittleImage,
-          width: 64,
-          height: 64,
-        ),
-        title: Text(
-          addListNow.horoscopeName,
-          style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w400,
-              color: Colors.pinkAccent),
-        ),
-        subtitle: Text(
-          addListNow.horoscopeDate,
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.w800, color: Colors.black),
-        ),
-        trailing: Icon(
-          Icons.arrow_forward_ios,
-          color: Colors.pink,
+    return Padding(
+      padding: const EdgeInsets.all(6.0),
+      child: Card(
+        elevation: 4,
+        child: ListTile(
+          onTap: () {},
+          leading: Image.asset(
+            "images/" + addListNow.horoscopeLittleImage,
+            width: 64,
+            height: 64,
+          ),
+          title: Text(
+            addListNow.horoscopeName,
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w400,
+                color: Colors.purple),
+          ),
+          subtitle: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            child: Text(
+              addListNow.horoscopeDate,
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black),
+            ),
+          ),
+          trailing: Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.deepPurpleAccent,
+          ),
         ),
       ),
     );
