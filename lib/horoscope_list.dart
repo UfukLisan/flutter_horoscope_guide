@@ -10,7 +10,7 @@ class HoroscopeList extends StatelessWidget {
     //List<Horoscope> allHoroscope = dataSource();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Horoscope Quide"),
+        title: Text("Burç Rehberi"),
       ),
       body: ListReady(),
     );
@@ -50,7 +50,7 @@ class HoroscopeList extends StatelessWidget {
       child: Card(
         elevation: 4,
         child: ListTile(
-          onTap: () {},
+          onTap: () => Navigator.pushNamed(context, "/horoscopeDetail/$index"),
           leading: Image.asset(
             "images/" + addListNow.horoscopeLittleImage,
             width: 64,
