@@ -1,3 +1,6 @@
+//      Author: Ufuk Lisan            E-mail=lisanufuk@gmail.com
+//      https://github.com/UfukLisan
+
 import 'package:flutter/material.dart';
 import 'package:flutter_horoscope_guide/models/horoscope.dart';
 import 'package:flutter_horoscope_guide/utilities/horoscopes.dart';
